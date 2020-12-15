@@ -105,7 +105,7 @@ function badDefense(/* code here */) {
 }
 
 /* If you still have time, use the space below to work on any stretch goals of your chosing as listed in the README file. */
-
+vari = 1;
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
   console.log("its working");

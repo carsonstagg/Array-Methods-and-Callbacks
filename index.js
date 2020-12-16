@@ -35,8 +35,9 @@ Use the higher-order function called getYears to do the following:
 2. Receive a callback function getFinals from task 2 
 3. Return an array called years containing all of the years in the getFinals data set*/
 
-function getYears(array) {
-  /* code here */
+function getYears(arr, callback) {
+  let years = callback(arr).map((callback) => callback.Year);
+  return years;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 4: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -46,8 +47,15 @@ Use the higher-order function getWinners to do the following:
 3. Determines the winner (home or away) of each `finals` game. 
 4. Returns the names of all winning countries in an array called `winners` */
 
-function getWinners(/* code here */) {
-  /* code here */
+function getWinners(arr, callback) {
+  let winners = callback(arr).map(function (win) {
+    if (win["Home Team Goals"] > win["Away Team Goals"]) {
+      return win["Home Team Name"];
+    } else {
+      return win["Away Team Name"];
+    }
+  });
+  return winners;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 5: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 
@@ -60,8 +68,11 @@ Use the higher-order function getWinnersByYear to do the following:
 hint: the strings returned need to exactly match the string in step 4.
  */
 
-function getWinnersByYear(/* code here */) {
-  /* code here */
+function getWinnersByYear(arr, cb, cb2) {
+  let winners = cb2(arr).map(function (item, index) {
+    return `In ${cb(arr)[index]}, ${item} won the world cup!`;
+  });
+  return winners;
 }
 
 /* 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 Task 6: 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀
@@ -74,10 +85,15 @@ Use the higher order function getAverageGoals to do the following:
  Example of invocation: getAverageGoals(getFinals(fifaData));
 */
 
-function getAverageGoals(/* code here */) {
-  /* code here */
+function getAverageGoals(callback) {
+  let number1 =
+    callback.reduce(
+      (counter, item) =>
+        counter + (item["Home Team Goals"] + item["Away Team Goals"]),
+      0
+    ) / callback.length;
+  return number1.toPrecision(3);
 }
-
 /// 🥅 STRETCH 🥅 ///
 
 /* 💪💪💪💪💪 Stretch 1: 💪💪💪💪💪 
@@ -105,7 +121,7 @@ function badDefense(/* code here */) {
 }
 
 /* If you still have time, use the space below to work on any stretch goals of your chosing as listed in the README file. */
-vari = 1;
+
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo() {
   console.log("its working");
